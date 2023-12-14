@@ -1,8 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://3l8ax14ofs8o"]
+[gd_scene load_steps=5 format=3 uid="uid://3l8ax14ofs8o"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_5h02g"]
+[ext_resource type="Script" path="res://SpringArm3D.gd" id="2_h7imo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nf2d3"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj73l"]
+height = 1.99599
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_5h02g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_nf2d3")
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bj73l")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 3.0
+script = ExtResource("2_h7imo")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+fov = 58.0801
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
