@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://3l8ax14ofs8o"]
+[gd_scene load_steps=6 format=3 uid="uid://3l8ax14ofs8o"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5h02g"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="2_h7imo"]
@@ -7,6 +7,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj73l"]
 height = 1.99599
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5kv3r"]
+radius = 0.25
+height = 0.5
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -19,6 +23,7 @@ mesh = SubResource("CapsuleMesh_nf2d3")
 shape = SubResource("CapsuleShape3D_bj73l")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.198626, 0)
 spring_length = 3.0
 script = ExtResource("2_h7imo")
 
@@ -26,3 +31,10 @@ script = ExtResource("2_h7imo")
 fov = 58.0801
 
 [node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6727)
+mesh = SubResource("CapsuleMesh_5kv3r")
+
+[node name="Marker3D" type="Marker3D" parent="MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.076069)

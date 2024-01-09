@@ -1,6 +1,7 @@
 extends CharacterBody3D
 @onready var spring_arm:SpringArm3D=$SpringArm3D
-
+var object_class = preload("res://ball.tscn")
+@onready var shoot_position= $MeshInstance3D2/Marker3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -31,3 +32,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func _process(delta):
+	var root = get_tree().get_root().get_node("World")
+	if Input.is_action_just_pressed("Shoot"):
+		print("shoot")
+		var object_instance = object_class.instantiate()
+		object_instance.position = shoot_position.global_position
+		object_instance.rotation.y=$MeshInstance3D2.rotation.y
+		root.add_child(object_instance)
