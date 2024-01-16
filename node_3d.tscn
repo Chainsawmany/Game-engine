@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3l8ax14ofs8o"]
+[gd_scene load_steps=8 format=3 uid="uid://3l8ax14ofs8o"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5h02g"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="2_h7imo"]
@@ -11,6 +11,10 @@ height = 1.99599
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5kv3r"]
 radius = 0.25
 height = 0.5
+
+[sub_resource type="PrismMesh" id="PrismMesh_o505w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l1pb6"]
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -33,8 +37,15 @@ fov = 58.0801
 [node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6727)
 mesh = SubResource("CapsuleMesh_5kv3r")
 
 [node name="Marker3D" type="Marker3D" parent="MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.076069)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01733)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2/Marker3D"]
+mesh = SubResource("PrismMesh_o505w")
+
+[node name="Area3D" type="Area3D" parent="." groups=["Player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_l1pb6")

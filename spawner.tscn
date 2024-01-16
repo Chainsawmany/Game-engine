@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://m42o5chg7u4l"]
+
+[ext_resource type="Script" path="res://spawner.gd" id="1_yb7s1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nculu"]
+radius = 0.25
+height = 0.5
+
+[node name="Spawner" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.220336, 1.07864, -0.353729)
+script = ExtResource("1_yb7s1")
+
+[node name="CAGE" type="MeshInstance3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CAGE"]
+operation = 2
+size = Vector3(2, 2, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CAGE/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152589, -0.0626357, -0.271307)
+operation = 2
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.198162, -0.0315628, -0.520554)
+mesh = SubResource("SphereMesh_nculu")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

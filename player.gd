@@ -2,10 +2,10 @@ extends CharacterBody3D
 @onready var spring_arm:SpringArm3D=$SpringArm3D
 var object_class = preload("res://ball.tscn")
 @onready var shoot_position= $MeshInstance3D2/Marker3D
-
-const SPEED = 5.0
+@onready var mesh = $MeshInstance3D2
+const SPEED = 10
 const JUMP_VELOCITY = 4.5
-
+var angular_acceleration:=7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -27,6 +27,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(direction.x, direction.z), delta * angular_acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -36,7 +37,7 @@ func _physics_process(delta):
 func _process(delta):
 	var root = get_tree().get_root().get_node("World")
 	if Input.is_action_just_pressed("Shoot"):
-		print("shoot")
+
 		var object_instance = object_class.instantiate()
 		object_instance.position = shoot_position.global_position
 		object_instance.rotation.y=$MeshInstance3D2.rotation.y

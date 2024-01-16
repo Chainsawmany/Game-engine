@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b045ws8xqvc40"]
+[gd_scene load_steps=8 format=3 uid="uid://b045ws8xqvc40"]
 
 [ext_resource type="PackedScene" uid="uid://3l8ax14ofs8o" path="res://node_3d.tscn" id="1_rasei"]
+[ext_resource type="PackedScene" uid="uid://m42o5chg7u4l" path="res://spawner.tscn" id="2_bsnov"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ujjqd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -21,7 +22,6 @@ glow_enabled = true
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="World" type="Node3D"]
-transform = Transform3D(0.630885, 0, 0, 0, 0.630885, 0, 0, 0, 0.630885, -0.0124073, 0.0109649, -0.0100908)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -33,7 +33,7 @@ shadow_enabled = true
 environment = SubResource("Environment_dlti3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(32.2301, 0, 0, 0, -0.0315964, 0, 0, 0, -28.7949, -3.05378, 0, -1.23401)
+transform = Transform3D(32.2301, 0, 0, 0, -0.0315964, 0, 0, 0, -28.7949, -8.05378, 0, -1.23401)
 mesh = SubResource("BoxMesh_adsd4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -43,3 +43,12 @@ shape = SubResource("ConcavePolygonShape3D_yfn0h")
 
 [node name="Player" parent="." instance=ExtResource("1_rasei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01355, 11.6128, 0.497864)
+
+[node name="Spawner" parent="." instance=ExtResource("2_bsnov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -1)
+
+[node name="Spawner2" parent="." instance=ExtResource("2_bsnov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -14)
+
+[node name="Spawner3" parent="." instance=ExtResource("2_bsnov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 11)

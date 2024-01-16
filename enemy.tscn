@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://pdf2lp4umrp1"]
+[gd_scene load_steps=7 format=3 uid="uid://pdf2lp4umrp1"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_rs0ea"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfpa7"]
+albedo_color = Color(0.956863, 0, 0.654902, 1)
+roughness = 0.0
+
 [sub_resource type="SphereMesh" id="SphereMesh_e4s5i"]
+material = SubResource("StandardMaterial3D_gfpa7")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i7sdk"]
 
@@ -10,6 +15,7 @@
 radius = 19.7909
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c1qvn"]
+radius = 1.5
 
 [node name="Enemy" type="RigidBody3D"]
 script = ExtResource("1_rs0ea")
